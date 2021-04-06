@@ -34,9 +34,9 @@ moneyManager.addMoneyCallback = function (data) {
     ApiConnector.addMoney(data, (response) => {
       if (response.success === true) {
         ProfileWidget.showProfile(response.data);
-        this.setMessage(response.isSuccess, 'Успешное поплнение счета');
+        this.setMessage(response.success, 'Успешное поплнение счета');
       } else {
-        this.setMessage(!response.isSuccess, response.error);
+        this.setMessage(response.success, response.error);
       }
     });
   };
@@ -46,9 +46,9 @@ moneyManager.addMoneyCallback = function (data) {
     ApiConnector.convertMoney(data, (response) => {
       if (response.success === true) {
         ProfileWidget.showProfile(response.data);
-        this.setMessage(response.isSuccess, 'Успешная конвертация');
+        this.setMessage(response.success, 'Успешная конвертация');
       } else {
-        this.setMessage(!response.isSuccess, response.error);
+        this.setMessage(response.success, response.error);
       }
     });
   };
@@ -58,9 +58,9 @@ moneyManager.addMoneyCallback = function (data) {
     ApiConnector.transferMoney(data, (response) => {
       if (response.success === true) {
         ProfileWidget.showProfile(response.data);
-        this.setMessage(response.isSuccess, 'Перевод выполнен успешно');
+        this.setMessage(response.success, 'Перевод выполнен успешно');
       } else {
-        this.setMessage(!response.isSuccess, response.error);
+        this.setMessage(response.success, response.error);
       }
     });
   };
@@ -83,9 +83,9 @@ favoritesWidget.addUserCallback = data => {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(response.data);
             moneyManager.updateUsersList(response.data);
-            favoritesWidget.setMessage(response.isSuccess, 'Пользователь успешно добавлен в список избранных');
+            favoritesWidget.setMessage(response.success, 'Пользователь успешно добавлен в список избранных');
         } else {
-            favoritesWidget.setMessage(!response.isSuccess, response.error);
+            favoritesWidget.setMessage(response.success, response.error);
         }
     });
 }
@@ -97,9 +97,9 @@ favoritesWidget.removeUserCallback = data => {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(response.data);
             moneyManager.updateUsersList(response.data);
-            favoritesWidget.setMessage(response.isSuccess, 'Пользователь успешно удален из списока избранных');
+            favoritesWidget.setMessage(response.success, 'Пользователь успешно удален из списока избранных');
         } else {
-            favoritesWidget.setMessage(!response.isSuccess, response.error);
+            favoritesWidget.setMessage(response.success, response.error);
         }
     });
 }
